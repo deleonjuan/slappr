@@ -6,11 +6,11 @@ const StatusBox = () => {
   return (
     <View style={styles.statusBoxContainer}>
       <View style={styles.messageContainer}>
-        <Text style={[styles.textBig, styles.name]}>Jhon Doe</Text>
+        <Text style={[styles.textBig, styles.name]}>Jhon Doe:</Text>
         <Text style={[styles.textNormal, styles.message]}>lorem Ipsum</Text>
       </View>
       <View style={styles.statusContainer}>
-        <Text style={[styles.textNormal, styles.moodLabel]}>MOOD:</Text>
+        <Text style={[styles.textNormal, styles.moodLabel]}>MOOD=</Text>
         <Text style={[styles.textBig, styles.mood, {marginLeft: 5}]}>Happy</Text>
       </View>
     </View>
@@ -22,7 +22,6 @@ export default StatusBox;
 const stylesheet = createStyleSheet(theme => ({
   statusBoxContainer: {
     backgroundColor: theme.colors.red01,
-    marginHorizontal: 10,
     padding: 5,
     borderRadius: 10,
   },

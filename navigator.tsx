@@ -1,7 +1,7 @@
 import {createStackNavigator} from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
-import {HomeScreen, LoginScreen, FriendsStatusesScreen} from '@project/screens';
+import {HomeScreen, LoginScreen} from '@project/screens';
 import {SCREENS} from '@utils/constants';
 import CustomBottomTabBar from '@components/CustomButtomTabBar';
 
@@ -24,10 +24,9 @@ export function LoggedStack() {
         headerShown: false,
       }}>
       <BottomTabStack.Screen name={SCREENS.HOME} component={HomeScreen} />
-      {/* <BottomTabStack.Screen
-        name={SCREENS.FRIENDS}
-        component={FriendsStatusesScreen}
-      /> */}
+      <BottomTabStack.Screen name={SCREENS.MAIL} component={HomeScreen} />
+      <BottomTabStack.Screen name={SCREENS.CAMERA} component={HomeScreen} />
+      <BottomTabStack.Screen name={SCREENS.FRIENDS} component={HomeScreen} />
     </BottomTabStack.Navigator>
   );
 }

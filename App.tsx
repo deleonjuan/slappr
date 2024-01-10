@@ -6,7 +6,7 @@ import {UnistylesRegistry} from 'react-native-unistyles';
 import {myTheme} from '@utils/theme';
 
 function App(): React.JSX.Element {
-  const token = null;
+  const token = 'some';
 
   UnistylesRegistry.addThemes({
     myTheme: myTheme,

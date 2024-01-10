@@ -1,16 +1,27 @@
-import {ImageBackground, View} from 'react-native';
-import {IMAGES} from '@project/images';
 import Header from './Header';
 import StatusBox from './StatusBox';
 import MenuBox from './MenuBox';
 import BackgroundContainer from '@components/Layout/BackgroundContainer';
+import {useState} from 'react';
+import AddUpdateModal from './AddUpdateModal';
+import {View} from 'react-native';
 
 const HomeScreen = () => {
+  const [modalVisible, setModalVisible] = useState(false);
+
+  const triggerModal = () => {
+    setModalVisible(isVisible => !isVisible);
+  };
+
   return (
     <BackgroundContainer>
       <Header />
-      <StatusBox />
-      <MenuBox />
+      <View style={{marginHorizontal: 10}}>
+        <StatusBox />
+      </View>
+      <MenuBox triggerModal={triggerModal} />
+
+      <AddUpdateModal modalVisible={modalVisible} onClose={triggerModal} />
     </BackgroundContainer>
   );
 };

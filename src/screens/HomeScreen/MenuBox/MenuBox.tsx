@@ -2,13 +2,18 @@ import {View} from 'react-native';
 import {createStyleSheet, useStyles} from 'react-native-unistyles';
 import MenuItem from './MenuItem';
 
-const MenuBox = () => {
+interface MenuBoxProps {
+  triggerModal: () => void;
+}
+
+const MenuBox: React.FC<MenuBoxProps> = ({triggerModal}) => {
   const {styles} = useStyles(stylesheet);
   return (
     <View style={styles.container}>
       <View style={styles.box}>
         <MenuItem text="my profile" />
-        <MenuItem text="add update" />
+        <MenuItem text="add update" onPress={triggerModal} />
+        <MenuItem text="comments" />
         <MenuItem text="people search" />
       </View>
     </View>

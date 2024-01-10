@@ -1,16 +1,50 @@
 import BackgroundContainer from '@components/Layout/BackgroundContainer';
 import {IMAGES} from '@project/images';
-import {Button, Image, Pressable, Text, TextInput, View} from 'react-native';
+import {Alert, Image, Pressable, Text, TextInput, View} from 'react-native';
 import {
   UnistylesRuntime,
   createStyleSheet,
   useStyles,
 } from 'react-native-unistyles';
+import ImagePicker from 'react-native-image-crop-picker';
+import {useDispatch} from 'react-redux';
+import {setToken, updateUserInfo} from '@store/slices/auth';
+import {useState} from 'react';
 
 const LoginScreen = () => {
+  const dispatch = useDispatch();
   const {styles} = useStyles(stylesheet);
 
-  const onLogin = () => {};
+  const [photo, setPhoto] = useState("");
+  const [username, setUsername] = useState("");
+
+  const onSetImage = () => {
+    ImagePicker.openPicker({
+      compressImageQuality: 0.8,
+      hideBottomControls: true,
+      mediaType: 'photo',
+      width: 400,
+      height: 400,
+      cropping: true,
+    })
+      .then(image => {
+        setPhoto(image.path);
+      })
+      .catch(e => {
+        console.log(e);
+        Alert.alert(e);
+      });
+  };
+
+  const onLogin = async () => {
+    if (!photo || !username) {
+      Alert.alert('info incompleta');
+      return;
+    }
+
+    dispatch(updateUserInfo({photo: photo, username: username}));
+    dispatch(setToken('access-token'));
+  };
 
   return (
     <BackgroundContainer
@@ -18,14 +52,21 @@ const LoginScreen = () => {
       <Image source={IMAGES.logo01} style={styles.logo} />
 
       <Pressable
-        style={{display: 'flex', flexDirection: 'row', alignItems: 'center', marginBottom: 15}}>
-        <View style={styles.imageFrame}></View>
+        onPress={onSetImage}
+        style={{
+          display: 'flex',
+          flexDirection: 'row',
+          alignItems: 'center',
+          marginBottom: 15,
+        }}>
+        <Image source={{uri: photo}} style={styles.imageFrame} />
         <Text style={styles.photoMessage}>Sube tu foto</Text>
       </Pressable>
 
       <TextInput
+        onChangeText={setUsername}
         style={styles.textInput}
-        placeholder='Tu nombre'
+        placeholder="Tu nombre"
       />
 
       <Pressable onPress={onLogin} style={styles.button}>
@@ -69,7 +110,7 @@ const stylesheet = createStyleSheet(theme => ({
     fontSize: 20,
     fontWeight: 'bold',
     color: theme.colors.yellow01,
-    marginBottom: 30
+    marginBottom: 30,
   },
   button: {
     backgroundColor: theme.colors.victoriusBlue,
@@ -87,5 +128,5 @@ const stylesheet = createStyleSheet(theme => ({
     fontSize: 20,
     fontWeight: 'bold',
     color: theme.colors.skyBlue02,
-  }
+  },
 }));

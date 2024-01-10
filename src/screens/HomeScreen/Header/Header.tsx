@@ -5,9 +5,11 @@ import {
   createStyleSheet,
   useStyles,
 } from 'react-native-unistyles';
+import {useSelector} from 'react-redux';
 
 const Header = () => {
   const {styles} = useStyles(stylesheet);
+  const {userInfo} = useSelector((state: any) => state.authReducer);
 
   return (
     <View style={styles.container}>
@@ -19,8 +21,10 @@ const Header = () => {
           <Text style={styles.verticalText}>UPDATE</Text>
         </View>
         <View style={styles.photoBox}>
-          <View
-            style={{flex: 1, borderRadius: 5, backgroundColor: 'green'}}></View>
+          <Image
+            source={{uri: userInfo.photo}}
+            style={{flex: 1, borderRadius: 5, backgroundColor: 'green'}}
+          />
         </View>
       </View>
     </View>

@@ -1,17 +1,22 @@
 import {Text, View} from 'react-native';
 import {createStyleSheet, useStyles} from 'react-native-unistyles';
+import {useSelector} from 'react-redux';
 
 const StatusBox = () => {
   const {styles} = useStyles(stylesheet);
+  const {userInfo} = useSelector((state: any) => state.authReducer);
   return (
     <View style={styles.statusBoxContainer}>
       <View style={styles.messageContainer}>
-        <Text style={[styles.textBig, styles.name]}>Jhon Doe:</Text>
+        <Text
+          style={[styles.textBig, styles.name]}>{`${userInfo.username}:`}</Text>
         <Text style={[styles.textNormal, styles.message]}>lorem Ipsum</Text>
       </View>
       <View style={styles.statusContainer}>
         <Text style={[styles.textNormal, styles.moodLabel]}>MOOD=</Text>
-        <Text style={[styles.textBig, styles.mood, {marginLeft: 5}]}>Happy</Text>
+        <Text style={[styles.textBig, styles.mood, {marginLeft: 5}]}>
+          Happy
+        </Text>
       </View>
     </View>
   );

@@ -16,6 +16,9 @@ const reducers = {
   setUserInfo: (state, {payload}) => {
     state.userInfo = payload;
   },
+  updateUserInfo: (state, {payload}) => {
+    state.userInfo = {...state.userInfo, ...payload};
+  },
   setToken: (state, {payload}) => {
     state.token = payload;
   },
@@ -27,7 +30,7 @@ const slice = createSlice({
   reducers,
 });
 
-export const {setIsLoading, setUserInfo, setToken, cleanData} = slice.actions;
+export const {setIsLoading, setUserInfo, updateUserInfo, setToken, cleanData} = slice.actions;
 // -----------------------------------
 // Actions
 // -----------------------------------

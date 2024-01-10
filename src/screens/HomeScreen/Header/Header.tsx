@@ -45,8 +45,8 @@ const stylesheet = createStyleSheet(theme => ({
     justifyContent: 'center',
   },
   photoBox: {
-    aspectRatio: '4/3',
-    height: UnistylesRuntime.screen.width / 4,
+    aspectRatio: '1/1',
+    height: UnistylesRuntime.screen.width / 3.5,
     backgroundColor: theme.colors.red01,
     borderWidth: 5,
     borderColor: theme.colors.red01,
@@ -78,8 +78,8 @@ const stylesheet = createStyleSheet(theme => ({
   },
   logo: {
     resizeMode: 'stretch',
-    width: UnistylesRuntime.screen.width / 3,
-    height: 60,
+    width: UnistylesRuntime.screen.width / 2.5,
+    height: 80,
   },
 }));
 

@@ -11,7 +11,7 @@ const initialState = {
 
 const reducers = {
   setIsLoading: (state, {payload}) => {
-    state.loader = payload;
+    state.isLoading = payload;
   },
   setUserInfo: (state, {payload}) => {
     state.userInfo = payload;

@@ -1,17 +1,29 @@
 import {View, Text, Modal, Pressable} from 'react-native';
 import {createStyleSheet, useStyles} from 'react-native-unistyles';
 import StatusBox from '../StatusBox';
+import { useState } from 'react';
 
 interface AddUpdateModalProps {
   modalVisible: boolean;
   onClose: () => void;
+  onSaveStatus: (status: any) => void;
 }
 
 const AddUpdateModal: React.FC<AddUpdateModalProps> = ({
   modalVisible,
   onClose,
+  onSaveStatus,
 }) => {
   const {styles} = useStyles(stylesheet);
+  const [message, setMessage] = useState("")
+  const [mood, setMood] = useState("")
+
+  const onSavePressed = () => {
+    onSaveStatus({message, mood})
+    setMessage("")
+    setMood("")
+    onClose()
+  }
 
   return (
     <Modal
@@ -23,9 +35,9 @@ const AddUpdateModal: React.FC<AddUpdateModalProps> = ({
       }}>
       <View style={styles.centeredView}>
         <View style={styles.modalView}>
-          <StatusBox />
+          <StatusBox editable={true} message={message} mood={mood} setMessage={setMessage} setMood={setMood}/>
           <View style={styles.modalBottom}>
-            <Pressable style={styles.button}>
+            <Pressable onPress={onSavePressed} style={styles.button}>
               <Text style={styles.buttonText}>POST</Text>
             </Pressable>
             <Pressable onPress={onClose} style={styles.button}>

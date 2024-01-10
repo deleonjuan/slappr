@@ -1,6 +1,6 @@
 import BackgroundContainer from '@components/Layout/BackgroundContainer';
 import {IMAGES} from '@project/images';
-import {Alert, Image, Pressable, Text, TextInput, View} from 'react-native';
+import {Alert, Image, Pressable, Text, TextInput} from 'react-native';
 import {
   UnistylesRuntime,
   createStyleSheet,
@@ -15,8 +15,8 @@ const LoginScreen = () => {
   const dispatch = useDispatch();
   const {styles} = useStyles(stylesheet);
 
-  const [photo, setPhoto] = useState("");
-  const [username, setUsername] = useState("");
+  const [photo, setPhoto] = useState('');
+  const [username, setUsername] = useState('');
 
   const onSetImage = () => {
     ImagePicker.openPicker({
@@ -31,7 +31,6 @@ const LoginScreen = () => {
         setPhoto(image.path);
       })
       .catch(e => {
-        console.log(e);
         Alert.alert(e);
       });
   };
@@ -42,7 +41,7 @@ const LoginScreen = () => {
       return;
     }
 
-    dispatch(updateUserInfo({photo: photo, username: username}));
+    dispatch(updateUserInfo({photo, username}));
     dispatch(setToken('access-token'));
   };
 

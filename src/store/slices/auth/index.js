@@ -41,7 +41,7 @@ const onLogin = data => dispatch => {
   dispatch(slice.actions.setToken(data.token));
 };
 
-const onLogout = data => dispatch => {
+const onLogout = () => dispatch => {
   dispatch(slice.actions.setUserInfo({}));
   dispatch(slice.actions.setToken(null));
 };

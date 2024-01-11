@@ -10,6 +10,7 @@ import {statusActions} from '@store/slices/status';
 import BottomTabNav from '@components/Layout/BottomTabNav';
 import {createStyleSheet, useStyles} from 'react-native-unistyles';
 import {ScrollView} from 'react-native-gesture-handler';
+import {authActions} from '@store/slices/auth';
 
 const HomeScreen = () => {
   const dispatch = useDispatch();
@@ -32,6 +33,11 @@ const HomeScreen = () => {
     }, 1000);
   };
 
+  const onExit = () => {
+    dispatch(authActions.setUserInfo({photo: null, username: null}));
+    dispatch(authActions.setToken(null));
+  };
+
   return (
     <BackgroundContainer>
       <BottomTabNav>
@@ -46,7 +52,7 @@ const HomeScreen = () => {
                 mood={lastStatus.mood}
               />
             </View>
-            <MenuBox triggerModal={triggerModal} />
+            <MenuBox triggerModal={triggerModal} onExit={onExit} />
           </ScrollView>
         </View>
 

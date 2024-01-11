@@ -19,6 +19,7 @@ export const CONSTS = {
     MY_PROFILE: 'my profile',
     COMMENTS: 'comments',
     SEARCH: 'people search',
+    SIGN_OUT: 'salir',
   },
   LOGIN: {
     YOUR_PHOTO: 'take a pic',

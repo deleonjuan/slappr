@@ -5,9 +5,10 @@ import {CONSTS} from '@utils/constants';
 
 interface MenuBoxProps {
   triggerModal: () => void;
+  onExit: () => void;
 }
 
-const MenuBox: React.FC<MenuBoxProps> = ({triggerModal}) => {
+const MenuBox: React.FC<MenuBoxProps> = ({triggerModal, onExit}) => {
   const {styles} = useStyles(stylesheet);
   return (
     <View style={styles.container}>
@@ -16,6 +17,7 @@ const MenuBox: React.FC<MenuBoxProps> = ({triggerModal}) => {
         <MenuItem text={CONSTS.MENU_BOX.MY_PROFILE} />
         <MenuItem text={CONSTS.MENU_BOX.COMMENTS} />
         <MenuItem text={CONSTS.MENU_BOX.SEARCH} />
+        <MenuItem text={CONSTS.MENU_BOX.SIGN_OUT} onPress={onExit} />
       </View>
     </View>
   );

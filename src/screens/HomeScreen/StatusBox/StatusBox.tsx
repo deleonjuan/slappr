@@ -21,30 +21,39 @@ const StatusBox: React.FC<StatusBoxProps> = ({
   message,
   mood,
   editable,
-  isLoading
+  isLoading,
 }) => {
   const {styles} = useStyles(stylesheet);
   const {userInfo} = useSelector((state: any) => state.authReducer);
 
   return (
     <View style={styles.statusBoxContainer}>
+      {isLoading && (
+        <View style={styles.loadingContainer}>
+          <View style={styles.loadingBox}>
+            <Text style={{color: 'white', fontSize: 30, fontWeight: 'bold'}}>
+              UPDATING
+            </Text>
+          </View>
+        </View>
+      )}
+
       <View style={styles.messageContainer}>
-        {
-          isLoading && <Text style={{color: 'red'}}>Loading</Text>
-        }
         <Text
           style={[styles.textBig, styles.name]}>{`${userInfo.username}:`}</Text>
         <TextInput
           editable={editable}
           onChangeText={setMessage}
           placeholder={
-            !editable && !message
+            isLoading
+              ? ''
+              : !editable && !message
               ? "tap 'ADD UPDATE' to add a new update"
               : 'your thoghts here!'
           }
           placeholderTextColor={'black'}
           style={[styles.textNormal, styles.message]}
-          value={message}
+          value={!isLoading ? message : ''}
           cursorColor="black"
         />
       </View>
@@ -54,7 +63,7 @@ const StatusBox: React.FC<StatusBoxProps> = ({
           editable={editable}
           onChangeText={setMood}
           style={[styles.textBig, styles.mood, {marginLeft: 5}]}
-          value={mood}
+          value={!isLoading ? mood : ''}
           placeholderTextColor={styles.mood.color}
           cursorColor="black"
         />
@@ -81,6 +90,7 @@ const stylesheet = createStyleSheet(theme => ({
     borderWidth: 5,
     borderBottomWidth: 7,
     borderColor: theme.colors.red01,
+    display: 'flex',
   },
   messageContainer: {
     backgroundColor: theme.colors.skyBlue01,
@@ -108,4 +118,21 @@ const stylesheet = createStyleSheet(theme => ({
   message: {color: 'black', height: '100%', verticalAlign: 'top'},
   moodLabel: {color: theme.colors.red01},
   mood: {color: theme.colors.victoriusPurple, flex: 1, padding: 0},
+  loadingContainer: {
+    position: 'absolute',
+    zIndex: 10,
+    width: '100%',
+    height: '100%',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  loadingBox: {
+    backgroundColor: '#777',
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 10,
+    borderWidth: 2,
+    borderColor: theme.colors.red01,
+  },
 }));

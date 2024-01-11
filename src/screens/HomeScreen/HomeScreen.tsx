@@ -7,9 +7,13 @@ import AddUpdateModal from './AddUpdateModal';
 import {View} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {statusActions} from '@store/slices/status';
+import BottomTabNav from '@components/Layout/BottomTabNav';
+import {createStyleSheet, useStyles} from 'react-native-unistyles';
+import {ScrollView} from 'react-native-gesture-handler';
 
 const HomeScreen = () => {
   const dispatch = useDispatch();
+  const {styles} = useStyles(stylesheet);
   const {lastStatus, isLoading} = useSelector(
     (state: any) => state.statusReducer,
   );
@@ -30,24 +34,54 @@ const HomeScreen = () => {
 
   return (
     <BackgroundContainer>
-      <Header />
-      <View style={{marginHorizontal: 10}}>
-        <StatusBox
-          editable={false}
-          isLoading={isLoading}
-          message={lastStatus.message}
-          mood={lastStatus.mood}
-        />
-      </View>
-      <MenuBox triggerModal={triggerModal} />
+      <BottomTabNav>
+        <View style={styles.container}>
+          <Header />
+          <ScrollView showsVerticalScrollIndicator={false}>
+            <View style={styles.statusBoxContainer}>
+              <StatusBox
+                editable={false}
+                isLoading={isLoading}
+                message={lastStatus.message}
+                mood={lastStatus.mood}
+              />
+            </View>
+            <MenuBox triggerModal={triggerModal} />
+          </ScrollView>
+        </View>
 
-      <AddUpdateModal
-        onSaveStatus={onSaveStatus}
-        modalVisible={modalVisible}
-        onClose={triggerModal}
-      />
+        <AddUpdateModal
+          onSaveStatus={onSaveStatus}
+          modalVisible={modalVisible}
+          onClose={triggerModal}
+        />
+      </BottomTabNav>
     </BackgroundContainer>
   );
 };
 
 export default HomeScreen;
+
+const stylesheet = createStyleSheet(() => ({
+  container: {
+    display: 'flex',
+    flexDirection: {
+      portrait: 'column',
+      landscape: 'row',
+    },
+    paddingRight: {
+      portrait: 0,
+      landscape: 10,
+    },
+  },
+  statusBoxContainer: {
+    marginHorizontal: {
+      portrait: 10,
+      landscape: 0,
+    },
+    marginVertical: {
+      portrait: 0,
+      landscape: 20,
+    },
+  },
+}));

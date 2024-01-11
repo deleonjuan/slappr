@@ -88,7 +88,10 @@ export default StatusBox;
 const stylesheet = createStyleSheet(theme => ({
   statusBoxContainer: {
     borderRadius: 10,
-    height: UnistylesRuntime.screen.width / 1.5,
+    height: {
+      portrait: UnistylesRuntime.screen.width / 1.5,
+      landscape: UnistylesRuntime.screen.width / 2.5,
+    },
     borderWidth: 5,
     borderBottomWidth: 7,
     borderColor: theme.colors.red01,

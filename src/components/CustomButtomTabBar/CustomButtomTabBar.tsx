@@ -1,24 +1,35 @@
 import {View} from 'react-native';
 import BottomTabButton from './BottomTabButton';
+import {ViewStyle} from 'react-native';
+import {useDispatch, useSelector} from 'react-redux';
+import {applicationActions} from '@store/slices/application';
 
 interface CustomBottomTabBarProps {
   state: any;
   descriptors: any;
   navigation: any;
+  style?: ViewStyle;
 }
 
 const CustomBottomTabBar: React.FC<CustomBottomTabBarProps> = ({
   state,
   descriptors,
   navigation,
+  style,
 }) => {
+  const dispatch = useDispatch();
+  const {screenIndex} = useSelector(
+    (ReducerState: any) => ReducerState.applicationReducer,
+  );
+
   return (
     <View
-      style={{
-        flexDirection: 'row',
-        paddingVertical: 10,
-        backgroundColor: '#080871',
-      }}>
+      style={[
+        {
+          backgroundColor: '#080871',
+        },
+        style,
+      ]}>
       {state.routes.map((route: any, index: Number) => {
         const {options} = descriptors[route.key];
         const label =
@@ -28,25 +39,27 @@ const CustomBottomTabBar: React.FC<CustomBottomTabBarProps> = ({
             ? options.title
             : route.name;
 
-        const isFocused = state.index === index;
+        const isFocused = screenIndex === index;
 
         const onPress = () => {
-          const event = navigation.emit({
-            type: 'tabPress',
-            target: route.key,
-            canPreventDefault: true,
-          });
+          // const event = navigation.emit({
+          //   type: 'tabPress',
+          //   target: route.key,
+          //   canPreventDefault: true,
+          // });
 
-          if (!isFocused && !event.defaultPrevented) {
+          if (!isFocused) {
+            dispatch(applicationActions.setScreenIndex(index));
             navigation.navigate(route.name, route.params);
           }
         };
 
         const onLongPress = () => {
-          navigation.emit({
-            type: 'tabLongPress',
-            target: route.key,
-          });
+          // navigation.emit({
+          //   type: 'tabLongPress',
+          //   target: route.key,
+          // });
+          return;
         };
 
         return (

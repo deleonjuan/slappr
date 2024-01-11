@@ -1,5 +1,6 @@
+import {IMAGES} from '@project/images';
 import {CONSTS} from '@utils/constants';
-import {Text, View, TextInput} from 'react-native';
+import {Text, View, TextInput, Image} from 'react-native';
 import {
   UnistylesRuntime,
   createStyleSheet,
@@ -32,9 +33,16 @@ const StatusBox: React.FC<StatusBoxProps> = ({
       {isLoading && (
         <View style={styles.loadingContainer}>
           <View style={styles.loadingBox}>
-            <Text style={{color: 'white', fontSize: 30, fontWeight: 'bold'}}>
-              UPDATING
+            <Text
+              style={{
+                color: 'white',
+                fontSize: 30,
+                fontWeight: 'bold',
+                marginRight: 10,
+              }}>
+              {CONSTS.STATUS_BOX.UPDATING}
             </Text>
+            <Image source={IMAGES.spinner} />
           </View>
         </View>
       )}
@@ -44,6 +52,7 @@ const StatusBox: React.FC<StatusBoxProps> = ({
           style={[styles.textBig, styles.name]}>{`${userInfo.username}:`}</Text>
         <TextInput
           autoFocus
+          multiline
           editable={editable}
           onChangeText={setMessage}
           placeholder={
@@ -60,7 +69,9 @@ const StatusBox: React.FC<StatusBoxProps> = ({
         />
       </View>
       <View style={styles.statusContainer}>
-        <Text style={[styles.textNormal, styles.moodLabel]}>MOOD=</Text>
+        <Text style={[styles.textNormal, styles.moodLabel]}>
+          {CONSTS.STATUS_BOX.MOOD}=
+        </Text>
         <TextInput
           editable={editable}
           onChangeText={setMood}
@@ -139,5 +150,9 @@ const stylesheet = createStyleSheet(theme => ({
     borderRadius: 10,
     borderWidth: 2,
     borderColor: theme.colors.red01,
+
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
   },
 }));

@@ -10,7 +10,9 @@ export const CONSTS = {
   EMPTY: '',
   STATUS_BOX: {
     TAP_TO_UPDATE: "tap 'ADD UPDATE' to add a new update",
-    MESSAGE_PLACEHOLDER: 'your thoghts here!',
+    MESSAGE_PLACEHOLDER: '',
+    MOOD: 'Estado',
+    UPDATING: 'UPDATING',
   },
   MENU_BOX: {
     ADD_UPDATE: 'add update',

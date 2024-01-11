@@ -1,9 +1,5 @@
-import FriendsStatusesScreen from "./FriendsStatuses"
-import HomeScreen from "./HomeScreen"
-import LoginScreen from "./LoginScreen"
+import FriendsStatusesScreen from './FriendsStatuses';
+import HomeScreen from './HomeScreen';
+import LoginScreen from './LoginScreen';
 
-export {
-    LoginScreen,
-    HomeScreen,
-    FriendsStatusesScreen,
-}
+export {LoginScreen, HomeScreen, FriendsStatusesScreen};

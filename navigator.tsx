@@ -19,6 +19,7 @@ export function UnloggedStack() {
 export function LoggedStack() {
   return (
     <BottomTabStack.Navigator
+      // eslint-disable-next-line react/no-unstable-nested-components
       tabBar={props => <CustomBottomTabBar {...props} />}
       screenOptions={{
         headerShown: false,

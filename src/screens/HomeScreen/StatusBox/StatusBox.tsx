@@ -1,3 +1,4 @@
+import {CONSTS} from '@utils/constants';
 import {Text, View, TextInput} from 'react-native';
 import {
   UnistylesRuntime,
@@ -42,14 +43,15 @@ const StatusBox: React.FC<StatusBoxProps> = ({
         <Text
           style={[styles.textBig, styles.name]}>{`${userInfo.username}:`}</Text>
         <TextInput
+          autoFocus
           editable={editable}
           onChangeText={setMessage}
           placeholder={
             isLoading
-              ? ''
+              ? CONSTS.EMPTY
               : !editable && !message
-              ? "tap 'ADD UPDATE' to add a new update"
-              : 'your thoghts here!'
+              ? CONSTS.STATUS_BOX.TAP_TO_UPDATE
+              : CONSTS.STATUS_BOX.MESSAGE_PLACEHOLDER
           }
           placeholderTextColor={'black'}
           style={[styles.textNormal, styles.message]}

@@ -8,8 +8,9 @@ import {
 } from 'react-native-unistyles';
 import ImagePicker from 'react-native-image-crop-picker';
 import {useDispatch} from 'react-redux';
-import {setToken, updateUserInfo} from '@store/slices/auth';
+import {authActions} from '@store/slices/auth';
 import {useState} from 'react';
+import {CONSTS} from '@utils/constants';
 
 const LoginScreen = () => {
   const dispatch = useDispatch();
@@ -37,12 +38,12 @@ const LoginScreen = () => {
 
   const onLogin = async () => {
     if (!photo || !username) {
-      Alert.alert('info incompleta');
+      Alert.alert(CONSTS.LOGIN.ALERTS.INCOMPLETE_INFO);
       return;
     }
 
-    dispatch(updateUserInfo({photo, username}));
-    dispatch(setToken('access-token'));
+    dispatch(authActions.updateUserInfo({photo, username}));
+    dispatch(authActions.setToken('access-token'));
   };
 
   return (
@@ -59,17 +60,17 @@ const LoginScreen = () => {
           marginBottom: 15,
         }}>
         <Image source={{uri: photo}} style={styles.imageFrame} />
-        <Text style={styles.photoMessage}>Sube tu foto</Text>
+        <Text style={styles.photoMessage}>{CONSTS.LOGIN.YOUR_PHOTO}</Text>
       </Pressable>
 
       <TextInput
         onChangeText={setUsername}
         style={styles.textInput}
-        placeholder="Tu nombre"
+        placeholder={CONSTS.LOGIN.YOUR_NAME}
       />
 
       <Pressable onPress={onLogin} style={styles.button}>
-        <Text style={styles.buttonText}>Entrar</Text>
+        <Text style={styles.buttonText}>{CONSTS.LOGIN.ENTER}</Text>
       </Pressable>
     </BackgroundContainer>
   );

@@ -1,5 +1,7 @@
 import {createSlice} from '@reduxjs/toolkit';
 
+export const AUTH_REDUCER = 'authReducer';
+
 const initialState = {
   isLoading: false,
   token: null,
@@ -25,29 +27,29 @@ const reducers = {
 };
 
 const slice = createSlice({
-  name: 'auth',
+  name: AUTH_REDUCER,
   initialState,
   reducers,
 });
 
-export const {setIsLoading, setUserInfo, updateUserInfo, setToken, cleanData} = slice.actions;
 // -----------------------------------
 // Actions
 // -----------------------------------
 
 const onLogin = data => dispatch => {
-  dispatch(setUserInfo(data));
-  dispatch(setToken(data.token));
+  dispatch(slice.actions.setUserInfo(data));
+  dispatch(slice.actions.setToken(data.token));
 };
 
 const onLogout = data => dispatch => {
-  dispatch(setUserInfo({}));
-  dispatch(setToken(null));
-}
+  dispatch(slice.actions.setUserInfo({}));
+  dispatch(slice.actions.setToken(null));
+};
 
-export const actions = {
+export const authActions = {
   onLogin,
-  onLogout
+  onLogout,
+  ...slice.actions,
 };
 
 export default slice.reducer;

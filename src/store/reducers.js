@@ -6,7 +6,7 @@ import {persistReducer} from 'redux-persist';
 
 export const appReducer = combineReducers({
   authReducer,
-  statusReducer
+  statusReducer,
 });
 
 const persistConfig = {

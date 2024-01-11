@@ -7,7 +7,6 @@ export const myTheme = {
 
     victoriusBlue: '#2321aa',
     victoriusPurple: '#7f3be7',
-
   },
 };
 

@@ -1,2 +1,2 @@
-import CustomBottomTabBar from "./CustomButtomTabBar";
+import CustomBottomTabBar from './CustomButtomTabBar';
 export default CustomBottomTabBar;

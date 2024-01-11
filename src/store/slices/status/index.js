@@ -1,11 +1,13 @@
 import {createSlice} from '@reduxjs/toolkit';
 
+export const STATUS_REDUCER = 'statusReducer';
+
 const initialState = {
   isLoading: false,
   lastStatus: {
     message: null,
-    mood: null
-  }
+    mood: null,
+  },
 };
 
 const reducers = {
@@ -18,13 +20,13 @@ const reducers = {
 };
 
 const slice = createSlice({
-  name: 'status',
+  name: STATUS_REDUCER,
   initialState,
   reducers,
 });
 
 export const statusActions = {
-  ...slice.actions
+  ...slice.actions,
 };
 
 export default slice.reducer;

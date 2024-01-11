@@ -8,21 +8,15 @@ interface MenuItemProps {
   arrowColor?: string;
 }
 
-const MenuItem: React.FC<MenuItemProps> = ({
-  icon,
-  text,
-  onPress,
-  arrowColor,
-}) => {
+const MenuItem: React.FC<MenuItemProps> = ({text, onPress}) => {
   const {styles} = useStyles(stylesheet);
   return (
     <Pressable onPress={onPress}>
       <View style={styles.menuItemContainer}>
         <View style={styles.menuItemLeftItems}>
-          {/* <Text>{':)'}</Text> */}
           <Text style={styles.menuItemText}>{text}</Text>
         </View>
-        <Text>{">"}</Text>
+        <Text>{'>'}</Text>
       </View>
     </Pressable>
   );

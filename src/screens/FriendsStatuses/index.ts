@@ -1,2 +1,2 @@
-import FriendsStatusesScreen from "./FriendsStatuses";
+import FriendsStatusesScreen from './FriendsStatuses';
 export default FriendsStatusesScreen;

@@ -1,6 +1,7 @@
 import {View} from 'react-native';
 import {createStyleSheet, useStyles} from 'react-native-unistyles';
 import MenuItem from './MenuItem';
+import {CONSTS} from '@utils/constants';
 
 interface MenuBoxProps {
   triggerModal: () => void;
@@ -11,10 +12,10 @@ const MenuBox: React.FC<MenuBoxProps> = ({triggerModal}) => {
   return (
     <View style={styles.container}>
       <View style={styles.box}>
-        <MenuItem text="my profile" />
-        <MenuItem text="add update" onPress={triggerModal} />
-        <MenuItem text="comments" />
-        <MenuItem text="people search" />
+        <MenuItem text={CONSTS.MENU_BOX.ADD_UPDATE} onPress={triggerModal} />
+        <MenuItem text={CONSTS.MENU_BOX.MY_PROFILE} />
+        <MenuItem text={CONSTS.MENU_BOX.COMMENTS} />
+        <MenuItem text={CONSTS.MENU_BOX.SEARCH} />
       </View>
     </View>
   );

@@ -1,2 +1,2 @@
-import StatusBox from "./StatusBox";
+import StatusBox from './StatusBox';
 export default StatusBox;

@@ -7,6 +7,7 @@ const initialState = {
   lastStatus: {
     message: null,
     mood: null,
+    emoji: null,
   },
 };
 

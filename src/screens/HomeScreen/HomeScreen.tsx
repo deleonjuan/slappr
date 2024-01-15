@@ -50,6 +50,7 @@ const HomeScreen = () => {
                 isLoading={isLoading}
                 message={lastStatus.message}
                 mood={lastStatus.mood}
+                emoji={lastStatus.emoji}
               />
             </View>
             <MenuBox triggerModal={triggerModal} onExit={onExit} />

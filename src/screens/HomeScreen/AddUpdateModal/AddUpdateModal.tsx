@@ -1,7 +1,8 @@
+import {useState} from 'react';
 import {View, Text, Modal, Pressable} from 'react-native';
 import {createStyleSheet, useStyles} from 'react-native-unistyles';
+import EmojiPicker, {EmojiType} from 'rn-emoji-keyboard';
 import StatusBox from '../StatusBox';
-import {useState} from 'react';
 
 interface AddUpdateModalProps {
   modalVisible: boolean;
@@ -17,42 +18,67 @@ const AddUpdateModal: React.FC<AddUpdateModalProps> = ({
   const {styles} = useStyles(stylesheet);
   const [message, setMessage] = useState('');
   const [mood, setMood] = useState('');
+  const [emoji, setEmoji] = useState('');
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+
+  const onSelectEmoji = (emojiObject: EmojiType) => {
+    setEmoji(emojiObject.emoji);
+  };
 
   const onSavePressed = () => {
-    onSaveStatus({message, mood});
+    onSaveStatus({message, mood, emoji});
     setMessage('');
     setMood('');
+    setEmoji('');
     onClose();
   };
 
   return (
-    <Modal
-      animationType="slide"
-      transparent={true}
-      visible={modalVisible}
-      onRequestClose={() => {
-        onClose();
-      }}>
-      <View style={styles.centeredView}>
-        <View style={styles.modalView}>
-          <StatusBox
-            editable={true}
-            message={message}
-            mood={mood}
-            setMessage={setMessage}
-            setMood={setMood}
-          />
-          <View style={styles.modalBottom}>
-            <Pressable onPress={onSavePressed} style={styles.button}>
-              <Text style={styles.buttonText}>POST</Text>
-            </Pressable>
-            <Pressable onPress={onClose} style={styles.button}>
-              <Text style={styles.buttonText}>CLOSE</Text>
-            </Pressable>
+    <>
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => {
+          onClose();
+        }}>
+        <View style={styles.centeredView}>
+          <View style={styles.modalView}>
+            <StatusBox
+              editable={true}
+              message={message}
+              mood={mood}
+              emoji={emoji}
+              setMessage={setMessage}
+              setMood={setMood}
+            />
+            <View style={styles.modalBottom}>
+              <Pressable onPress={onSavePressed} style={styles.button}>
+                <Text style={styles.buttonText}>POST</Text>
+              </Pressable>
+              <Pressable
+                onPress={() => setIsOpen(true)}
+                style={styles.emojiPickerContainer}>
+                <Text style={styles.emojiPicker}>
+                  😀😁😂🤣😃😄😅😆😉😊😋😎😍😘🥰
+                </Text>
+              </Pressable>
+              <Pressable onPress={onClose} style={styles.button}>
+                <Text style={styles.buttonText}>CLOSE</Text>
+              </Pressable>
+            </View>
           </View>
         </View>
-      </View>
-    </Modal>
+      </Modal>
+
+      <EmojiPicker
+        onEmojiSelected={onSelectEmoji}
+        open={isOpen}
+        onClose={() => setIsOpen(false)}
+        categoryPosition="bottom"
+        enableSearchBar
+      />
+    </>
   );
 };
 
@@ -75,6 +101,7 @@ const stylesheet = createStyleSheet(theme => ({
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
+    alignItems: 'center',
     marginTop: 10,
   },
   button: {
@@ -90,5 +117,16 @@ const stylesheet = createStyleSheet(theme => ({
     fontWeight: 'bold',
     fontSize: 15,
     color: 'white',
+  },
+  emojiPickerContainer: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginHorizontal: 25,
+  },
+  emojiPicker: {
+    fontSize: 20,
+    color: 'white',
+    textAlign: 'center',
   },
 }));

@@ -14,6 +14,7 @@ interface StatusBoxProps {
   setMood?: any;
   message?: string;
   mood?: string;
+  emoji?: string;
   isLoading?: boolean;
 }
 
@@ -22,6 +23,7 @@ const StatusBox: React.FC<StatusBoxProps> = ({
   setMood,
   message,
   mood,
+  emoji,
   editable,
   isLoading,
 }) => {
@@ -80,6 +82,16 @@ const StatusBox: React.FC<StatusBoxProps> = ({
           placeholderTextColor={styles.mood.color}
           cursorColor="black"
         />
+        <View
+          style={{
+            position: 'absolute',
+            right: 15,
+            top: -30,
+          }}>
+          <Text style={{color: 'white', fontSize: 50}}>
+            {!isLoading ? emoji : ''}
+          </Text>
+        </View>
       </View>
     </View>
   );

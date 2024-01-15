@@ -1,8 +1,8 @@
-import {View} from 'react-native';
 import BottomTabButton from './BottomTabButton';
 import {ViewStyle} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {applicationActions} from '@store/slices/application';
+import LinearGradient from 'react-native-linear-gradient';
 
 interface CustomBottomTabBarProps {
   state: any;
@@ -23,13 +23,7 @@ const CustomBottomTabBar: React.FC<CustomBottomTabBarProps> = ({
   );
 
   return (
-    <View
-      style={[
-        {
-          backgroundColor: '#080871',
-        },
-        style,
-      ]}>
+    <LinearGradient colors={['#000000', '#080871']} style={[style]}>
       {state.routes.map((route: any, index: Number) => {
         const {options} = descriptors[route.key];
         const label =
@@ -76,7 +70,7 @@ const CustomBottomTabBar: React.FC<CustomBottomTabBarProps> = ({
           />
         );
       })}
-    </View>
+    </LinearGradient>
   );
 };
 

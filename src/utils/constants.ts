@@ -23,7 +23,7 @@ export const CONSTS = {
   },
   LOGIN: {
     YOUR_PHOTO: 'take a pic',
-    YOUR_NAME: 'choose your nick',
+    YOUR_NAME: 'choose your nickname',
     ENTER: 'GO',
     ALERTS: {
       INCOMPLETE_INFO: 'some data is missing',

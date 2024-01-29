@@ -13,4 +13,5 @@ export const IMAGES: Record<string, any> = {
   background1: require('./background01.webp'),
   logo01: require('./slapperLogo01.webp'),
   spinner: require('./loadingSpinner.webp'),
+  userImage: require('./userImage.webp'),
 };

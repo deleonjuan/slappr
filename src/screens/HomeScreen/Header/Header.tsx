@@ -23,8 +23,8 @@ const Header = () => {
           </View>
           <View style={styles.photoBox}>
             <Image
-              source={{uri: userInfo.photo}}
-              style={{flex: 1, borderRadius: 5, backgroundColor: 'green'}}
+              source={userInfo.photo ? {uri: userInfo.photo} : IMAGES.userImage}
+              style={styles.profilePic}
             />
           </View>
         </View>
@@ -48,7 +48,7 @@ const stylesheet = createStyleSheet(theme => ({
     },
     flex: {
       portrait: 0,
-      landscape: 1,
+      landscape: 2,
     },
   },
   headerRightItem: {
@@ -96,6 +96,12 @@ const stylesheet = createStyleSheet(theme => ({
       landscape: UnistylesRuntime.screen.width / 5,
     },
     display: 'flex',
+  },
+  profilePic: {
+    flex: 1,
+    borderRadius: 5,
+    backgroundColor: 'green',
+    aspectRatio: 1 / 1,
   },
   verticalTextContainer: {
     padding: 15,

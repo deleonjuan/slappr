@@ -36,6 +36,7 @@ const HomeScreen = () => {
   const onExit = () => {
     dispatch(authActions.setUserInfo({photo: null, username: null}));
     dispatch(authActions.setToken(null));
+    dispatch(statusActions.setLastStatus({}));
   };
 
   return (

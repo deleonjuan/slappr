@@ -37,7 +37,7 @@ const LoginScreen = () => {
   };
 
   const onLogin = async () => {
-    if (!photo || !username) {
+    if (!username) {
       Alert.alert(CONSTS.LOGIN.ALERTS.INCOMPLETE_INFO);
       return;
     }
@@ -59,7 +59,10 @@ const LoginScreen = () => {
           alignItems: 'center',
           marginBottom: 15,
         }}>
-        <Image source={{uri: photo}} style={styles.imageFrame} />
+        <Image
+          source={photo ? {uri: photo} : IMAGES.userImage}
+          style={styles.imageFrame}
+        />
         <Text style={styles.photoMessage}>{CONSTS.LOGIN.YOUR_PHOTO}</Text>
       </Pressable>
 

@@ -11,7 +11,7 @@ export const CONSTS = {
   STATUS_BOX: {
     TAP_TO_UPDATE: "tap 'ADD UPDATE' to add a new update",
     MESSAGE_PLACEHOLDER: '',
-    MOOD: 'Estado',
+    MOOD: 'mood',
     UPDATING: 'UPDATING',
   },
   MENU_BOX: {
@@ -19,14 +19,14 @@ export const CONSTS = {
     MY_PROFILE: 'my profile',
     COMMENTS: 'comments',
     SEARCH: 'people search',
-    SIGN_OUT: 'salir',
+    SIGN_OUT: 'exit',
   },
   LOGIN: {
     YOUR_PHOTO: 'take a pic',
     YOUR_NAME: 'choose your nickname',
     ENTER: 'GO',
     ALERTS: {
-      INCOMPLETE_INFO: 'some data is missing',
+      INCOMPLETE_INFO: 'please choose a nickname',
     },
   },
 };

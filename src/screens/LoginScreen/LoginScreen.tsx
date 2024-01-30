@@ -1,6 +1,6 @@
 import BackgroundContainer from '@components/Layout/BackgroundContainer';
 import {IMAGES} from '@project/images';
-import {Alert, Image, Pressable, Text, TextInput} from 'react-native';
+import {Image, Pressable, Text, TextInput, ToastAndroid} from 'react-native';
 import {
   UnistylesRuntime,
   createStyleSheet,
@@ -32,13 +32,16 @@ const LoginScreen = () => {
         setPhoto(image.path);
       })
       .catch(e => {
-        Alert.alert(e);
+        ToastAndroid.show(e.message, ToastAndroid.SHORT);
       });
   };
 
   const onLogin = async () => {
     if (!username) {
-      Alert.alert(CONSTS.LOGIN.ALERTS.INCOMPLETE_INFO);
+      ToastAndroid.show(
+        CONSTS.LOGIN.ALERTS.INCOMPLETE_INFO,
+        ToastAndroid.SHORT,
+      );
       return;
     }
 

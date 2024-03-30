@@ -1,4 +1,5 @@
 import {IMAGES} from '@project/images';
+import {CONSTS} from '@utils/constants';
 import {Image, Text, View} from 'react-native';
 import {
   UnistylesRuntime,
@@ -19,7 +20,9 @@ const Header = () => {
       <View style={styles.headerRightItem}>
         <View style={styles.photoContainer}>
           <View style={styles.verticalTextContainer}>
-            <Text style={styles.verticalText}>UPDATE</Text>
+            <Text style={styles.verticalText}>
+              {CONSTS.HEADER_USER_DATA.UPDATE_LABEL}
+            </Text>
           </View>
           <View style={styles.photoBox}>
             <Image

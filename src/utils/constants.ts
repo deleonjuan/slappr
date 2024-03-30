@@ -8,6 +8,9 @@ export const SCREENS = {
 
 export const CONSTS = {
   EMPTY: '',
+  HEADER_USER_DATA: {
+    UPDATE_LABEL: 'UPDATE',
+  },
   STATUS_BOX: {
     TAP_TO_UPDATE: "tap 'ADD UPDATE' to add a new update",
     MESSAGE_PLACEHOLDER: '',

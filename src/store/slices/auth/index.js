@@ -5,6 +5,7 @@ export const AUTH_REDUCER = 'authReducer';
 const initialState = {
   isLoading: false,
   token: null,
+  userId: null,
   userInfo: {
     photo: null,
     username: null,
@@ -23,6 +24,9 @@ const reducers = {
   },
   setToken: (state, {payload}) => {
     state.token = payload;
+  },
+  setUserId: (state, {payload}) => {
+    state.userId = payload;
   },
 };
 

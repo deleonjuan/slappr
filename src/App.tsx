@@ -7,9 +7,14 @@ import {myTheme} from '@utils/theme';
 import {Provider, useSelector} from 'react-redux';
 import store, {persistor} from '@store/index';
 import {PersistGate} from 'redux-persist/integration/react';
+import {useUserId} from './hooks/useUserId';
 
 const Auth = () => {
   const {token} = useSelector((state: any) => state.authReducer);
+  const configureUser = useUserId();
+
+  configureUser();
+
   return <>{token ? <LoggedStack /> : <UnloggedStack />}</>;
 };
 

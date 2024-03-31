@@ -3,6 +3,7 @@ import {
   GetItemCommand,
   ScanCommand,
 } from "@aws-sdk/client-dynamodb";
+import {unmarshall} from '@aws-sdk/util-dynamodb'
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
 
 export async function getPosts(
@@ -10,7 +11,7 @@ export async function getPosts(
   dbbClient: DynamoDBClient
 ): Promise<APIGatewayProxyResult> {
   if (event.queryStringParameters) {
-    if ("id" in event.queryStringParameters) {
+    if ('id' in event.queryStringParameters) {
       const userId = event.queryStringParameters["id"];
       const postsFromUser = await dbbClient.send(
         new GetItemCommand({
@@ -30,7 +31,7 @@ export async function getPosts(
 
       return {
         statusCode: 200,
-        body: JSON.stringify(postsFromUser.Item),
+        body: JSON.stringify(unmarshall(postsFromUser.Item)),
       };
     } else {
       return {
@@ -40,14 +41,15 @@ export async function getPosts(
     }
   }
 
-  const res = await dbbClient.send(
+  const postsList = await dbbClient.send(
     new ScanCommand({
       TableName: process.env.TABLE_NAME,
     })
   );
 
+  const unmarshalledItems = postsList.Items.map(post => unmarshall(post))
   return {
     statusCode: 201,
-    body: JSON.stringify(res.Items),
+    body: JSON.stringify(unmarshalledItems),
   };
 }

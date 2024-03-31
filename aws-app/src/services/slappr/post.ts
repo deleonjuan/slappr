@@ -1,4 +1,5 @@
 import { DynamoDBClient, PutItemCommand } from "@aws-sdk/client-dynamodb";
+import { marshall } from "@aws-sdk/util-dynamodb";
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
 import { v4 } from "uuid";
 
@@ -12,15 +13,15 @@ export async function postUpdate(
   const res = await dbbClient.send(
     new PutItemCommand({
       TableName: process.env.TABLE_NAME,
-      Item: {
-        id: { S: randomId },
-        userId: { S: item.userId },
-        username: { S: item.username },
-        message: { S: item.message },
-        mood: { S: item.mood },
-        emoji: { S: item.emoji },
-        createdAt: { S: Date.now().toString() },
-      },
+      Item: marshall({
+        id: randomId,
+        userId: item.userId,
+        username: item.username,
+        message: item.message,
+        mood: item.mood,
+        emoji: item.emoji,
+        createdAt: Date.now().toString(),
+      }),
     })
   );
 

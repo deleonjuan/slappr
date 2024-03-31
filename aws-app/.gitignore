@@ -1,3 +1,5 @@
 node_modules
 cdk.out
 *.http
+/__tests__
+/.vscode

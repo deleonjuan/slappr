@@ -55,6 +55,11 @@ const state = {
       params: undefined,
     },
     {
+      key: 'friends-hRh_Rw1cDzYCk0e2U8KK7',
+      name: 'friends',
+      params: undefined,
+    },
+    {
       key: 'mail-pLP1P0OGC8XhXmU2zUmih',
       name: 'mail',
       params: undefined,
@@ -62,11 +67,6 @@ const state = {
     {
       key: 'camera-e-OvkNPyjzmFWhDtoBFJy',
       name: 'camera',
-      params: undefined,
-    },
-    {
-      key: 'friends-hRh_Rw1cDzYCk0e2U8KK7',
-      name: 'friends',
       params: undefined,
     },
   ],

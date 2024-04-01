@@ -1,4 +1,4 @@
-import FriendsStatusesScreen from './FriendsStatuses';
+import FriendsStatusesScreen from './FriendsScreen';
 import HomeScreen from './HomeScreen';
 import LoginScreen from './LoginScreen';
 

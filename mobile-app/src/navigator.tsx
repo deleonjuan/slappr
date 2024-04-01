@@ -3,6 +3,7 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 import {HomeScreen, LoginScreen} from '@project/screens';
 import {SCREENS} from '@utils/constants';
+import FriendStatusesScreen from '@screens/FriendsScreen/FriendsScreen';
 
 const Stack = createStackNavigator();
 const BottomTabStack = createBottomTabNavigator();
@@ -18,11 +19,15 @@ export function UnloggedStack() {
 export function LoggedStack() {
   return (
     <Stack.Navigator
+      initialRouteName={SCREENS.HOME}
       screenOptions={{headerShown: false, animationEnabled: false}}>
       <BottomTabStack.Screen name={SCREENS.HOME} component={HomeScreen} />
       <BottomTabStack.Screen name={SCREENS.MAIL} component={HomeScreen} />
       <BottomTabStack.Screen name={SCREENS.CAMERA} component={HomeScreen} />
-      <BottomTabStack.Screen name={SCREENS.FRIENDS} component={HomeScreen} />
+      <BottomTabStack.Screen
+        name={SCREENS.FRIENDS}
+        component={FriendStatusesScreen}
+      />
     </Stack.Navigator>
   );
 }

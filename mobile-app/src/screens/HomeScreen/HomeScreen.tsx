@@ -11,6 +11,7 @@ import BottomTabNav from '@components/Layout/BottomTabNav';
 import {createStyleSheet, useStyles} from 'react-native-unistyles';
 import {ScrollView} from 'react-native-gesture-handler';
 import {authActions} from '@store/slices/auth';
+import {beApiEndpoints} from '@store/apis/beApi';
 
 const HomeScreen = () => {
   const dispatch = useDispatch();
@@ -19,6 +20,8 @@ const HomeScreen = () => {
     (state: any) => state.statusReducer,
   );
   const [modalVisible, setModalVisible] = useState(false);
+  const [createPost, _] = beApiEndpoints.useCreatePostMutation();
+  const {userId, userInfo} = useSelector((state: any) => state.authReducer);
 
   const triggerModal = () => {
     setModalVisible(isVisible => !isVisible);
@@ -27,6 +30,8 @@ const HomeScreen = () => {
   const onSaveStatus = (newStatus: any) => {
     dispatch(statusActions.setIsLoading(true));
     dispatch(statusActions.setLastStatus(newStatus));
+
+    createPost({...newStatus, userId, username: userInfo.username});
 
     setTimeout(() => {
       dispatch(statusActions.setIsLoading(false));

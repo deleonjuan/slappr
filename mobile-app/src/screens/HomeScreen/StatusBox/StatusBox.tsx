@@ -68,6 +68,7 @@ const StatusBox: React.FC<StatusBoxProps> = ({
           style={[styles.textNormal, styles.message]}
           value={!isLoading ? message : ''}
           cursorColor="black"
+          maxLength={120}
         />
       </View>
       <View style={styles.statusContainer}>
@@ -81,6 +82,7 @@ const StatusBox: React.FC<StatusBoxProps> = ({
           value={!isLoading ? mood : ''}
           placeholderTextColor={styles.mood.color}
           cursorColor="black"
+          maxLength={15}
         />
         <View
           style={{

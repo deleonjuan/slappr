@@ -21,6 +21,7 @@ const FriendStatusesScreen = () => {
         <View style={styles.container}>
           {!isLoading && (
             <FlatList
+              showsVerticalScrollIndicator={false}
               data={data}
               keyExtractor={post => post.id}
               renderItem={({item}) => (

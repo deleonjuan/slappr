@@ -20,7 +20,7 @@ export async function postUpdate(
         message: item.message,
         mood: item.mood,
         emoji: item.emoji,
-        createdAt: Date.now().toString(),
+        createdAt: Date.now(),
       }),
     })
   );

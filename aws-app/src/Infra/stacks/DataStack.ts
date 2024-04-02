@@ -17,7 +17,11 @@ export class DataStack extends Stack {
                 name: 'id',
                 type: AttributeType.STRING
             },
-            tableName: `SlapprStack-${suffix}`
+            sortKey: {
+                name: 'createdAt',
+                type: AttributeType.NUMBER
+            },
+            tableName: `SlapprPostsTable-${suffix}`
         })
     }
 }
